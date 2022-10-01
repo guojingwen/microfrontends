@@ -1,0 +1,19 @@
+{
+  "name": "single-spa-learn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "single-spa-config.js",
+  "scripts": {
+    "dev": "node start"
+  },
+  "keywords": [],
+  "author": "dashu",
+  "license": "ISC",
+  "dependencies": {
+    "single-spa": "^5.9.4"
+  },
+  "devDependencies": {
+    "koa": "^2.13.4",
+    "koa-static": "^5.0.0"
+  }
+}

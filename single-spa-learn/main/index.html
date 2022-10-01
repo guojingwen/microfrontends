@@ -1,0 +1,17 @@
+<html>
+<body>
+    <h2> Hello Single-spa</h2>
+    <a href="javascript:goApp1()">APP1</a>
+    <script src="single-spa-config.js" type="module"></script>
+    <script>
+        function goApp1 () {
+            console.log('goApp1');
+            history.pushState(
+                {name: 'mainAPP', msg: 'hello'},
+                '',
+                '/app1',
+            );
+        }
+    </script>
+</body>
+</html>
