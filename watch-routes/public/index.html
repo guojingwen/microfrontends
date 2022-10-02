@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      // 拦截浏览器前进后退
+      window.addEventListener('popstate', function(e) {
+        doLifeCycle();
+      });
+
+      // 拦截history跳转
+      const originPush = history.pushState;
+      history.pushState = (...args) => {
+        originPush.apply(window.history, args);
+        doLifeCycle();
+      };
+      window.history.replaceState = (...args) => {
+        originReplace.apply(window.history, args);
+        doLifeCycle();
+      };
+      
+      function doLifeCycle() {
+        console.log('todo',  `
+        判断路由改变是否从一个微服务到另一个微服务,
+        如果是，则卸载当前应用，加载下一个应用，执行前后应用的生命周期
+        `);
+      }
+    </script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+ <!--  <script>
+    // 监听hashchange
+    window.addEventListener('hashchange', handleUrlChange);
+    function handleUrlChange () {
+      doLifeCycle();
+    }
+    function doLifeCycle() {
+      console.log('todo',  `
+      判断路由改变是否从一个微服务到另一个微服务,
+      如果是，则卸载当前应用，加载下一个应用，执行前后应用的生命周期
+      `);
+    }
+    // 上述方法不支持拦截 vue-router 中的 router-link
+    // 采用事件代理处理a标签
+    document.body.addEventListener('click', function(e) {
+      if(e.target.tagName !== 'A') return;
+      const href = e.target.getAttribute('href');
+      if(/#\//.test(href)) {
+        doLifeCycle();
+      }
+    })
+  </script> -->
+  
+</html>
