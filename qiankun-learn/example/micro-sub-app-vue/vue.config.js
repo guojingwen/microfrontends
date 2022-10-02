@@ -1,5 +1,6 @@
 const { name } = require("./package");
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'development' ? '' : '/app-vue',
   devServer: {
     // 配置下面内容 否则主应用访问会报跨域
     headers: {

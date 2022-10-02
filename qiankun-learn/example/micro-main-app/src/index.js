@@ -7,7 +7,7 @@ import App from "./App";
 registerMicroApps([
   {
     name: 'vueApp',
-    entry: '//localhost:3001',
+    entry: process.env.NODE_ENV === 'development' ? '//localhost:3001' : '/app-vue/index.html',
     container: '#micro-container',
     activeRule: '/app-vue',
   },
