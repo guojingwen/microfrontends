@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>微应用1</h1>
+    微应用1
   </div>
 </template>
 
@@ -13,6 +13,12 @@ export default {
 };
 </script>
 
+<style>
+.hello {
+  color: red;
+  font-size: 40px;
+}
+</style>
 <style scoped>
 h3 {
   margin: 40px 0 0;

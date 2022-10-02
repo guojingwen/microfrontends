@@ -12,12 +12,17 @@ registerMicroApps([
     activeRule: '/app-vue',
   },
 ]);
-start();
+start({
+  sandbox: {
+    experimentalStyleIsolation: true,
+  }
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
+    <div id="app"></div> 
   </React.StrictMode>
 );
 

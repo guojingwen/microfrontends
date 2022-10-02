@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用Web Component 隔离样式</title>
+    <style>
+        .hello {
+            background-color: aquamarine;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 20px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hello">主应用</div>
+    <div class="sub-hello">
+        使用了子应用的class
+    </div>
+    <div id="container"></div>
+    <script>
+
+        function createElement(appContent) {
+            const container = document.createElement('div');
+            container.innerHTML = appContent;
+            
+            const appElement = container.firstElementChild;
+            const { innerHTML } = appElement;
+            appElement.innerHTML = '';
+            let shadow;
+
+            if (appElement.attachShadow) {
+                shadow = appElement.attachShadow({ mode: 'open' });
+            } else {
+                shadow = appElement.createShadowRoot();
+            }
+            shadow.innerHTML = innerHTML;
+            return appElement;
+        }
+
+        const subApp = `<div>
+            <style>.sub-hello {color: blue}</style>
+            <p class="sub-hello">子应用</p>
+        <div>`;
+        // document.getElementById('container').innerHTML = subApp;
+        document.getElementById('container').appendChild(createElement(subApp));
+    </script>
+</body>
+</html>
