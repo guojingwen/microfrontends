@@ -44,9 +44,11 @@ function App() {
             display: 'flex', marginTop: '10vh', fontSize: '40px', justifyContent: 'center',
             }, style)}>
             React主应用
-          </div> :
-          <div id="micro-container" style={style}></div>
+          </div> : null
         }
+        <div id="micro-container" style={Object.assign({
+          display: selectedKey === '/' ? 'none' : 'block'
+        }, style)}></div>
       </div>
     </Router>
   )
